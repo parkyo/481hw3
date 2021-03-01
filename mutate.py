@@ -11,58 +11,58 @@ class myVisitor( ast.NodeVisitor ):
             self.counter += 1
             print('Visiting Add, counter = {}'.format(self.counter))
             
-#        if isinstance(node.op, ast.Sub):
-#            self.counter += 1
-#            print('Visiting sub, counter = {}'.format(self.counter))
-#
-#        if isinstance(node.op, ast.Mult):
-#            self.counter += 1
-#            print('Visiting mult, counter = {}'.format(self.counter))
-#
-#        if isinstance(node.op, ast.FloorDiv):
-#            self.counter += 1
-#            print('Visiting Floordiv, counter = {}'.format(self.counter))
-#
-#        if isinstance(node.op, ast.Div):
-#            self.counter += 1
-#            print('Visiting Div, counter = {}'.format(self.counter))
+        if isinstance(node.op, ast.Sub):
+            self.counter += 1
+            print('Visiting sub, counter = {}'.format(self.counter))
+
+        if isinstance(node.op, ast.Mult):
+            self.counter += 1
+            print('Visiting mult, counter = {}'.format(self.counter))
+
+        if isinstance(node.op, ast.FloorDiv):
+            self.counter += 1
+            print('Visiting Floordiv, counter = {}'.format(self.counter))
+
+        if isinstance(node.op, ast.Div):
+            self.counter += 1
+            print('Visiting Div, counter = {}'.format(self.counter))
 #
         return self.generic_visit(node) # continue visiting the rest
         
         
-#    def visit_Compare( self, node ):
-#        if isinstance(node.ops, ast.GtE):
-#            self.counter += 1
-#            print('Visiting Gte, counter = {}'.format(self.counter))
-#
-#        if isinstance(node.ops, ast.Gt):
-#            self.counter += 1
-#            print('Visiting Gt, counter = {}'.format(self.counter))
-#
-#        if isinstance(node.ops, ast.LtE):
-#            self.counter += 1
-#            print('Visiting lte, counter = {}'.format(self.counter))
-#
-#        if isinstance(node.ops, ast.Lt):
-#            self.counter += 1
-#            print('Visiting lt, counter = {}'.format(self.counter))
-#
-#
-#        return self.generic_visit(node) # continue visiting the rest
-#
-#    def visit_BoolOp( self, node ):
-#        if isinstance(node.op, ast.Add):
-#            self.counter += 1
-#            print('Visiting , counter = {}'.format(self.counter))
-#
-#        return self.generic_visit(node) # continue visiting the rest
-#
-#    def visit_Assign( self, node ):
-#        if isinstance(node.op, ast.Add):
-#            self.counter += 1
-#            print('Visiting Add, counter = {}'.format(self.counter))
-#
-#        return self.generic_visit(node) # continue visiting the rest
+    def visit_Compare( self, node ):
+        if isinstance(node.ops, ast.GtE):
+            self.counter += 1
+            print('Visiting Gte, counter = {}'.format(self.counter))
+
+        if isinstance(node.ops, ast.Gt):
+            self.counter += 1
+            print('Visiting Gt, counter = {}'.format(self.counter))
+
+        if isinstance(node.ops, ast.LtE):
+            self.counter += 1
+            print('Visiting lte, counter = {}'.format(self.counter))
+
+        if isinstance(node.ops, ast.Lt):
+            self.counter += 1
+            print('Visiting lt, counter = {}'.format(self.counter))
+
+
+        return self.generic_visit(node) # continue visiting the rest
+
+    def visit_BoolOp( self, node ):
+        if isinstance(node.op, ast.Add):
+            self.counter += 1
+            print('Visiting , counter = {}'.format(self.counter))
+
+        return self.generic_visit(node) # continue visiting the rest
+
+    def visit_Assign( self, node ):
+        if isinstance(node.op, ast.Add):
+            self.counter += 1
+            print('Visiting Add, counter = {}'.format(self.counter))
+
+        return self.generic_visit(node) # continue visiting the rest
         
     
 
@@ -310,18 +310,19 @@ class myTransformer(ast.NodeTransformer):
                     
         return self.generic_visit(node)
 
-#    def visit_Assign(self, node):
-#        if isinstance(node, ast.Assign):
-#            self.counter += 1
-#
-#            if self.counter == self.nodeToMutate:
-#                (node.left).right = node.right
-#                (node.right).left = node.left
-#
-#                print('deleting assignment for {}'.format(self.counter))
-#                return ast.copy_location(new_node, node) # helps debugging
-#
-#
+    def visit_Assign(self, node):
+        if isinstance(node, ast.Assign):
+            self.counter += 1
+
+            if self.counter == self.nodeToMutate:
+                (node.left).right = node.right
+                (node.right).left = node.left
+
+                print('deleting assignment for {}'.format(self.counter))
+                return ast.copy_location(new_node, node) # helps debugging
+        return self.generic_visit(node)
+
+
 
 
 my_tree = None
