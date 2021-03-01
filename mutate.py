@@ -116,10 +116,10 @@ class myTransformer(ast.NodeTransformer):
                 if node.right is not None:
                     new_node.right = node.right
 
-               new_node.op = ast.Div()
+                new_node.op = ast.Div()
 
-               print('changing floorDiv {} to div.'.format(self.counter))
-               return ast.copy_location(new_node, node) # helps debugging
+                print('changing floorDiv {} to div.'.format(self.counter))
+                return ast.copy_location(new_node, node) # helps debugging
                
         if isinstance(node.op, ast.Div):
            self.counter += 1
@@ -132,10 +132,10 @@ class myTransformer(ast.NodeTransformer):
                 if node.right is not None:
                     new_node.right = node.right
 
-               new_node.op = ast.FloorDiv()
+                new_node.op = ast.FloorDiv()
 
-               print('changing div {} to floordiv.'.format(self.counter))
-               return ast.copy_location(new_node, node) # helps debugging
+                print('changing div {} to floordiv.'.format(self.counter))
+                return ast.copy_location(new_node, node) # helps debugging
                
         
         if isinstance(node.op, ast.Mult):
@@ -148,10 +148,10 @@ class myTransformer(ast.NodeTransformer):
                 if node.right is not None:
                     new_node.right = node.right
 
-               new_node.op = ast.Pow()
+                new_node.op = ast.Pow()
 
-               print('changing mult {} to pow.'.format(self.counter))
-               return ast.copy_location(new_node, node) # helps debugging
+                print('changing mult {} to pow.'.format(self.counter))
+                return ast.copy_location(new_node, node) # helps debugging
 
         return self.generic_visit(node)
         
