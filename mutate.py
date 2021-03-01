@@ -78,8 +78,11 @@ class myTransformer(ast.NodeTransformer):
 
             if self.counter == self.nodeToMutate:
                 new_node = ast.BinOp()
-                new_node.left = node.left
-                new_node.right = node.right
+                if node.left is not None:
+                    new_node.left = node.left
+
+                if node.right is not None:
+                    new_node.right = node.right
 
                 new_node.ops = [ast.Sub()]
 
@@ -91,8 +94,11 @@ class myTransformer(ast.NodeTransformer):
 
             if self.counter == self.nodeToMutate:
                 new_node = ast.BinOp()
-                new_node.left = node.left
-                new_node.right = node.right
+                if node.left is not None:
+                    new_node.left = node.left
+
+                if node.right is not None:
+                    new_node.right = node.right
 
                 new_node.op = ast.Add()
 
@@ -104,8 +110,11 @@ class myTransformer(ast.NodeTransformer):
 
            if self.counter == self.nodeToMutate:
                new_node = ast.BinOp()
-               new_node.left = node.left
-               new_node.right = node.right
+                if node.left is not None:
+                    new_node.left = node.left
+
+                if node.right is not None:
+                    new_node.right = node.right
 
                new_node.op = ast.Div()
 
@@ -117,8 +126,11 @@ class myTransformer(ast.NodeTransformer):
 
            if self.counter == self.nodeToMutate:
                new_node = ast.BinOp()
-               new_node.left = node.left
-               new_node.right = node.right
+                if node.left is not None:
+                    new_node.left = node.left
+
+                if node.right is not None:
+                    new_node.right = node.right
 
                new_node.op = ast.FloorDiv()
 
@@ -131,8 +143,10 @@ class myTransformer(ast.NodeTransformer):
 
            if self.counter == self.nodeToMutate:
                new_node = ast.BinOp()
-               new_node.left = node.left
-               new_node.right = node.right
+                if node.left is not None:
+                    new_node.left = node.left
+                if node.right is not None:
+                    new_node.right = node.right
 
                new_node.op = ast.Pow()
 
@@ -148,8 +162,10 @@ class myTransformer(ast.NodeTransformer):
 
             if self.counter == self.nodeToMutate:
                 new_node = ast.Compare()
-                new_node.left = node.left
-                new_node.right = node.right
+                if node.left is not None:
+                    new_node.left = node.left
+                if node.right is not None:
+                    new_node.right = node.right
 
                 new_node.ops = [ast.Gt()]
 
@@ -161,8 +177,10 @@ class myTransformer(ast.NodeTransformer):
 
             if self.counter == self.nodeToMutate:
                 new_node = ast.Compare()
-                new_node.left = node.left
-                new_node.right = node.right
+                if node.left is not None:
+                    new_node.left = node.left
+                if node.right is not None:
+                    new_node.right = node.right
 
                 new_node.op = [ast.Lt()]
 
@@ -174,8 +192,10 @@ class myTransformer(ast.NodeTransformer):
 
             if self.counter == self.nodeToMutate:
                 new_node = ast.Compare()
-                new_node.left = node.left
-                new_node.right = node.right
+                if node.left is not None:
+                    new_node.left = node.left
+                if node.right is not None:
+                    new_node.right = node.right
 
                 new_node.ops = [ast.LtE()]
 
@@ -187,8 +207,10 @@ class myTransformer(ast.NodeTransformer):
 
             if self.counter == self.nodeToMutate:
                 new_node = ast.Compare()
-                new_node.left = node.left
-                new_node.right = node.right
+                if node.left is not None:
+                    new_node.left = node.left
+                if node.right is not None:
+                    new_node.right = node.right
 
                 new_node.ops = [ast.GtE()]
 
@@ -200,8 +222,10 @@ class myTransformer(ast.NodeTransformer):
 
             if self.counter == self.nodeToMutate:
                 new_node = ast.Compare()
-                new_node.left = node.left
-                new_node.right = node.right
+                if node.left is not None:
+                    new_node.left = node.left
+                if node.right is not None:
+                    new_node.right = node.right
 
                 new_node.ops =[ ast.NotEq() ]
 
@@ -214,8 +238,10 @@ class myTransformer(ast.NodeTransformer):
 
             if self.counter == self.nodeToMutate:
                 new_node = ast.Compare()
-                new_node.left = node.left
-                new_node.right = node.right
+                if node.left is not None:
+                    new_node.left = node.left
+                if node.right is not None:
+                    new_node.right = node.right
 
                 new_node.ops = ast.Eq()
 
@@ -228,8 +254,10 @@ class myTransformer(ast.NodeTransformer):
 
             if self.counter == self.nodeToMutate:
                 new_node = ast.Compare()
-                new_node.left = node.left
-                new_node.right = node.right
+                if node.left is not None:
+                    new_node.left = node.left
+                if node.right is not None:
+                    new_node.right = node.right
 
                 new_node.ops = ast.IsNot()
 
@@ -242,8 +270,10 @@ class myTransformer(ast.NodeTransformer):
 
             if self.counter == self.nodeToMutate:
                 new_node = ast.Compare()
-                new_node.left = node.left
-                new_node.right = node.right
+                if node.left is not None:
+                    new_node.left = node.left
+                if node.right is not None:
+                    new_node.right = node.right
 
                 new_node.ops = ast.Is()
 
@@ -256,8 +286,10 @@ class myTransformer(ast.NodeTransformer):
 
             if self.counter == self.nodeToMutate:
                 new_node = ast.Compare()
-                new_node.left = node.left
-                new_node.right = node.right
+                if node.left is not None:
+                    new_node.left = node.left
+                if node.right is not None:
+                    new_node.right = node.right
 
                 new_node.ops = ast.NotIn()
 
@@ -270,8 +302,10 @@ class myTransformer(ast.NodeTransformer):
 
             if self.counter == self.nodeToMutate:
                 new_node = ast.Compare()
-                new_node.left = node.left
-                new_node.right = node.right
+                if node.left is not None:
+                    new_node.left = node.left
+                if node.right is not None:
+                    new_node.right = node.right
 
                 new_node.ops = ast.In()
 
@@ -287,8 +321,10 @@ class myTransformer(ast.NodeTransformer):
 
             if self.counter == self.nodeToMutate:
                 new_node = ast.BoolOp()
-                new_node.left = node.left
-                new_node.right = node.right
+                if node.left is not None:
+                    new_node.left = node.left
+                if node.right is not None:
+                    new_node.right = node.right
 
                 new_node.op = ast.Or()
 
@@ -300,8 +336,10 @@ class myTransformer(ast.NodeTransformer):
 
             if self.counter == self.nodeToMutate:
                 new_node = ast.BoolOp()
-                new_node.left = node.left
-                new_node.right = node.right
+                if node.left is not None:
+                    new_node.left = node.left
+                if node.right is not None:
+                    new_node.right = node.right
 
                 new_node.op = ast.And()
 
