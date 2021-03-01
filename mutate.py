@@ -109,7 +109,7 @@ class myTransformer(ast.NodeTransformer):
            self.counter += 1
 
            if self.counter == self.nodeToMutate:
-               new_node = ast.BinOp()
+                new_node = ast.BinOp()
                 if node.left is not None:
                     new_node.left = node.left
 
