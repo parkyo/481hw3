@@ -315,11 +315,9 @@ class myTransformer(ast.NodeTransformer):
             self.counter += 1
 
             if self.counter == self.nodeToMutate:
-                (node.left).right = node.right
-                (node.right).left = node.left
 
                 print('deleting assignment for {}'.format(self.counter))
-                return ast.copy_location(new_node, node) # helps debugging
+                return None # helps debugging
         return self.generic_visit(node)
 
 
