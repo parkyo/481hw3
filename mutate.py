@@ -51,14 +51,14 @@ class myVisitor( ast.NodeVisitor ):
         return self.generic_visit(node) # continue visiting the rest
 
     def visit_BoolOp( self, node ):
-        if isinstance(node.op, ast.Add):
+        if isinstance(node.op, ast.And):
             self.counter += 1
             print('Visiting , counter = {}'.format(self.counter))
 
         return self.generic_visit(node) # continue visiting the rest
 
     def visit_Assign( self, node ):
-        if isinstance(node.op, ast.Add):
+        if isinstance(node, ast.Assign):
             self.counter += 1
             print('Visiting Add, counter = {}'.format(self.counter))
 
