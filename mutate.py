@@ -267,7 +267,7 @@ class myTransformer(ast.NodeTransformer):
                 print('deleting assignment for {}'.format(self.counter))
                 return ast.copy_location(new_node, node) # helps debugging
                 
-    return self.generic_visit(node)
+        return self.generic_visit(node)
 
 
 
