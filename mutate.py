@@ -6,6 +6,15 @@ class myVisitor( ast.NodeVisitor ):
     def __init__ (self):
         self.counter = 0
 
+
+    def visit_Assign( self, node ):
+        if isinstance(node, ast.Assign):
+            self.counter += 1
+            print('Visiting Assign, counter = {}'.format(self.counter))
+            
+        return self.generic_visit(node) # continue visiting the rest
+
+            
     def visit_BinOp( self, node ):
         if isinstance(node.op, ast.Add):
             self.counter += 1
@@ -53,16 +62,12 @@ class myVisitor( ast.NodeVisitor ):
     def visit_BoolOp( self, node ):
         if isinstance(node.op, ast.And):
             self.counter += 1
-            print('Visiting , counter = {}'.format(self.counter))
+            print('Visiting And, counter = {}'.format(self.counter))
 
         return self.generic_visit(node) # continue visiting the rest
 
-    def visit_Assign( self, node ):
-        if isinstance(node, ast.Assign):
-            self.counter += 1
-            print('Visiting Add, counter = {}'.format(self.counter))
+    
 
-        return self.generic_visit(node) # continue visiting the rest
         
     
 
