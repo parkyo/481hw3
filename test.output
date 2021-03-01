@@ -1,4 +1,4 @@
 Traceback (most recent call last):
   File "publictest-full.py", line 6, in <module>
     import pycodestyle
-ImportError: No module named pycodestyle
+ModuleNotFoundError: No module named 'pycodestyle'

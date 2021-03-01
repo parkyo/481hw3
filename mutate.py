@@ -10,8 +10,61 @@ class myVisitor( ast.NodeVisitor ):
         if isinstance(node.op, ast.Add):
             self.counter += 1
             print('Visiting Add, counter = {}'.format(self.counter))
-
+            
+#        if isinstance(node.op, ast.Sub):
+#            self.counter += 1
+#            print('Visiting sub, counter = {}'.format(self.counter))
+#
+#        if isinstance(node.op, ast.Mult):
+#            self.counter += 1
+#            print('Visiting mult, counter = {}'.format(self.counter))
+#
+#        if isinstance(node.op, ast.FloorDiv):
+#            self.counter += 1
+#            print('Visiting Floordiv, counter = {}'.format(self.counter))
+#
+#        if isinstance(node.op, ast.Div):
+#            self.counter += 1
+#            print('Visiting Div, counter = {}'.format(self.counter))
+#
         return self.generic_visit(node) # continue visiting the rest
+        
+        
+#    def visit_Compare( self, node ):
+#        if isinstance(node.ops, ast.GtE):
+#            self.counter += 1
+#            print('Visiting Gte, counter = {}'.format(self.counter))
+#
+#        if isinstance(node.ops, ast.Gt):
+#            self.counter += 1
+#            print('Visiting Gt, counter = {}'.format(self.counter))
+#
+#        if isinstance(node.ops, ast.LtE):
+#            self.counter += 1
+#            print('Visiting lte, counter = {}'.format(self.counter))
+#
+#        if isinstance(node.ops, ast.Lt):
+#            self.counter += 1
+#            print('Visiting lt, counter = {}'.format(self.counter))
+#
+#
+#        return self.generic_visit(node) # continue visiting the rest
+#
+#    def visit_BoolOp( self, node ):
+#        if isinstance(node.op, ast.Add):
+#            self.counter += 1
+#            print('Visiting , counter = {}'.format(self.counter))
+#
+#        return self.generic_visit(node) # continue visiting the rest
+#
+#    def visit_Assign( self, node ):
+#        if isinstance(node.op, ast.Add):
+#            self.counter += 1
+#            print('Visiting Add, counter = {}'.format(self.counter))
+#
+#        return self.generic_visit(node) # continue visiting the rest
+        
+    
 
 # mutate the random node
 class myTransformer(ast.NodeTransformer):
@@ -28,7 +81,7 @@ class myTransformer(ast.NodeTransformer):
                 new_node.left = node.left
                 new_node.right = node.right
 
-                new_node.op = ast.Sub()
+                new_node.ops = [ast.Sub()]
 
                 print('changing add {} to sub.'.format(self.counter))
                 return ast.copy_location(new_node, node) # helps debugging
@@ -90,7 +143,7 @@ class myTransformer(ast.NodeTransformer):
         
         
     def visit_Compare(self, node):
-        if isinstance(node.op, ast.LtE):
+        if isinstance(node.ops, ast.LtE):
             self.counter += 1
 
             if self.counter == self.nodeToMutate:
@@ -98,12 +151,12 @@ class myTransformer(ast.NodeTransformer):
                 new_node.left = node.left
                 new_node.right = node.right
 
-                new_node.op = ast.Gt()
+                new_node.ops = [ast.Gt()]
 
                 print('changing lessThanEqual {} to greaterThan.'.format(self.counter))
                 return ast.copy_location(new_node, node) # helps debugging
         
-        if isinstance(node.op, ast.GtE):
+        if isinstance(node.ops, ast.GtE):
             self.counter += 1
 
             if self.counter == self.nodeToMutate:
@@ -111,12 +164,12 @@ class myTransformer(ast.NodeTransformer):
                 new_node.left = node.left
                 new_node.right = node.right
 
-                new_node.op = ast.Lt()
+                new_node.op = [ast.Lt()]
 
                 print('changing GTE {} to LT.'.format(self.counter))
                 return ast.copy_location(new_node, node) # helps debugging
 
-        if isinstance(node.op, ast.Gt):
+        if isinstance(node.ops, ast.Gt):
             self.counter += 1
 
             if self.counter == self.nodeToMutate:
@@ -124,12 +177,12 @@ class myTransformer(ast.NodeTransformer):
                 new_node.left = node.left
                 new_node.right = node.right
 
-                new_node.op = ast.LtE()
+                new_node.ops = [ast.LtE()]
 
                 print('changing GT {} to LtE.'.format(self.counter))
                 return ast.copy_location(new_node, node) # helps debugging
 
-        if isinstance(node.op, ast.Lt):
+        if isinstance(node.ops, ast.Lt):
             self.counter += 1
 
             if self.counter == self.nodeToMutate:
@@ -137,12 +190,12 @@ class myTransformer(ast.NodeTransformer):
                 new_node.left = node.left
                 new_node.right = node.right
 
-                new_node.op = ast.GtE()
+                new_node.ops = [ast.GtE()]
 
                 print('changing LT {} to GtE.'.format(self.counter))
                 return ast.copy_location(new_node, node) # helps debugging
 
-        if isinstance(node.op, ast.Eq):
+        if isinstance(node.ops, ast.Eq):
             self.counter += 1
 
             if self.counter == self.nodeToMutate:
@@ -150,13 +203,13 @@ class myTransformer(ast.NodeTransformer):
                 new_node.left = node.left
                 new_node.right = node.right
 
-                new_node.op = ast.NotEq()
+                new_node.ops =[ ast.NotEq() ]
 
                 print('changing eq {} to neq.'.format(self.counter))
                 return ast.copy_location(new_node, node) # helps debugging
                 
         
-        if isinstance(node.op, ast.NotEq):
+        if isinstance(node.ops, ast.NotEq):
             self.counter += 1
 
             if self.counter == self.nodeToMutate:
@@ -164,13 +217,13 @@ class myTransformer(ast.NodeTransformer):
                 new_node.left = node.left
                 new_node.right = node.right
 
-                new_node.op = ast.Eq()
+                new_node.ops = ast.Eq()
 
                 print('changing neq {} to eq.'.format(self.counter))
                 return ast.copy_location(new_node, node) # helps debugging
 
 
-        if isinstance(node.op, ast.Is):
+        if isinstance(node.ops, ast.Is):
             self.counter += 1
 
             if self.counter == self.nodeToMutate:
@@ -178,13 +231,13 @@ class myTransformer(ast.NodeTransformer):
                 new_node.left = node.left
                 new_node.right = node.right
 
-                new_node.op = ast.IsNot()
+                new_node.ops = ast.IsNot()
 
                 print('changing is {} to isnot.'.format(self.counter))
                 return ast.copy_location(new_node, node) # helps debugging
                 
                 
-        if isinstance(node.op, ast.IsNot):
+        if isinstance(node.ops, ast.IsNot):
             self.counter += 1
 
             if self.counter == self.nodeToMutate:
@@ -192,13 +245,13 @@ class myTransformer(ast.NodeTransformer):
                 new_node.left = node.left
                 new_node.right = node.right
 
-                new_node.op = ast.Is()
+                new_node.ops = ast.Is()
 
                 print('changing isnot {} to is.'.format(self.counter))
                 return ast.copy_location(new_node, node) # helps debugging
                 
                 
-        if isinstance(node.op, ast.In):
+        if isinstance(node.ops, ast.In):
             self.counter += 1
 
             if self.counter == self.nodeToMutate:
@@ -206,13 +259,13 @@ class myTransformer(ast.NodeTransformer):
                 new_node.left = node.left
                 new_node.right = node.right
 
-                new_node.op = ast.NotIn()
+                new_node.ops = ast.NotIn()
 
                 print('changing In {} to InNot.'.format(self.counter))
                 return ast.copy_location(new_node, node) # helps debugging
                 
                 
-        if isinstance(node.op, ast.NotIn):
+        if isinstance(node.ops, ast.NotIn):
             self.counter += 1
 
             if self.counter == self.nodeToMutate:
@@ -220,7 +273,7 @@ class myTransformer(ast.NodeTransformer):
                 new_node.left = node.left
                 new_node.right = node.right
 
-                new_node.op = ast.In()
+                new_node.ops = ast.In()
 
                 print('changing Notin {} to in.'.format(self.counter))
                 return ast.copy_location(new_node, node) # helps debugging
@@ -255,20 +308,20 @@ class myTransformer(ast.NodeTransformer):
                 print('changing or {} to and.'.format(self.counter))
                 return ast.copy_location(new_node, node) # helps debugging
                     
-                    
-    def visit_Assign(self, node):
-        if isinstance(node.op, ast.Assign(targets=[ast.Name(id='q1', ctx=ast.Store()),], value=ast.Name(id='s1',ctx=ast.Load()))):
-            self.counter += 1
-
-            if self.counter == self.nodeToMutate:
-                (node.left).right = node.right
-                (node.right).left = node.left
-
-                print('deleting assignment for {}'.format(self.counter))
-                return ast.copy_location(new_node, node) # helps debugging
-                
         return self.generic_visit(node)
 
+#    def visit_Assign(self, node):
+#        if isinstance(node, ast.Assign):
+#            self.counter += 1
+#
+#            if self.counter == self.nodeToMutate:
+#                (node.left).right = node.right
+#                (node.right).left = node.left
+#
+#                print('deleting assignment for {}'.format(self.counter))
+#                return ast.copy_location(new_node, node) # helps debugging
+#
+#
 
 
 my_tree = None
@@ -276,10 +329,10 @@ with open(sys.argv[1]) as f:
     source = f.read()
     my_tree = ast.parse( source )
 
-my_visited_tree = myVisitor()
-my_visited_tree.visit(my_tree)
-
-for i in range(sys.argv[2]):
+for i in range(int(sys.argv[2])):
+    my_visited_tree = myVisitor()
+    my_visited_tree.visit(my_tree)
+    
     node_to_mutate = random.randint(1, my_visited_tree.counter)
 
     my_transformed_node = myTransformer(node_to_mutate)
