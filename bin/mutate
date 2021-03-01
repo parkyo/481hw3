@@ -1,0 +1,5 @@
+#!/bin/bash
+
+python mutate.py fuzzywuzzy.py $1
+
+cp fuzzywuzzy.py saved.py ; for mutant in [0-19].py ; do rm -rf *.pyc *cache* ; cp $mutant fuzzywuzzy.py ; python publictest-full.py 2> test.output ; echo $mutant ; grep FAILED test.output ; done ; cp saved.py fuzzywuzzy.py
